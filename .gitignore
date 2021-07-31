@@ -1,1 +1,5 @@
 bin/
+build/
+/.gradle/
+/app/libs
+local.properties
