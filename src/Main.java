@@ -1,8 +1,7 @@
-import java.io.IOException;
 
 public class Main {
-    static PingCheckServer pcs;
-    public static void main(String[] args) throws IOException {
+    private static PingCheckServer pcs;
+    public static void main(String[] args) {
         pcs = new PingCheckServer(7);
         pcs.start();
         Runtime.getRuntime().addShutdownHook(
