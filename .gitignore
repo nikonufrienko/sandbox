@@ -4,4 +4,5 @@ build/
 /.gradle/
 /app/libs
 local.properties
-/.idea/
+/.idea
+/build
