@@ -29,4 +29,10 @@ public class PingCheckServer extends Thread {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void interrupt() {
+        super.interrupt();
+        serverSocket.close();
+    }
 }
