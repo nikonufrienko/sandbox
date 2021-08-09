@@ -6,7 +6,7 @@ import java.net.SocketException;
 
 public class PingCheckServer extends Thread {
     private int port;
-    private DatagramSocket serverSocket;
+    volatile private DatagramSocket serverSocket;
     final private int BUFFER_SIZE = 1024;
     public PingCheckServer(int port) {
         super();
@@ -28,12 +28,5 @@ public class PingCheckServer extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-
-    @Override
-    public void interrupt() {
-        super.interrupt();
-        serverSocket.close();
     }
 }
