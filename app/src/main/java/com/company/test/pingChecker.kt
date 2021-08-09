@@ -1,9 +1,6 @@
 package com.company.test
 
-import android.util.Log
 import kotlinx.coroutines.delay
-import java.io.IOException
-import java.net.Inet4Address
 import java.net.InetAddress
 
 suspend fun doPingTest(
@@ -21,7 +18,7 @@ suspend fun doPingTest(
         var mistakesCounter = 0
         while (System.currentTimeMillis() - start < time) {
             number++
-            val currValue = pingChecker.doPing(InetAddress.getByName(ip), 7, 100)
+            val currValue = pingChecker.doPing(InetAddress.getByName(ip), port, 100)
             if (currValue == -1)
                 mistakesCounter++
             else {
