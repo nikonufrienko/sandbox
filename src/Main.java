@@ -1,8 +1,9 @@
 
 public class Main {
+    private final int PORT = 49121;
     private static PingCheckServer pcs;
     public static void main(String[] args) {
-        pcs = new PingCheckServer(7);
+        pcs = new PingCheckServer(PORT);
         pcs.start();
         Runtime.getRuntime().addShutdownHook(
                 new Thread(Main::stopPCS)
