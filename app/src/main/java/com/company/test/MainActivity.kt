@@ -1,8 +1,8 @@
 package com.company.test
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.widget.ArrayAdapter
 import com.company.test.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
@@ -161,10 +161,13 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             CoroutineScope(Dispatchers.Main).launch {
+                Log.d("", "pcs thread is alive: ${pcs.isAlive}")
                 if(pcs.isAlive)
                     pcs.interrupt()
                 binding.pingServerButt.text = getString(R.string.startUdpPingServer)
                 pingServerIsRunning.set(false)
+                delay(500)
+                Log.d("", "pcs thread is alive: ${pcs.isAlive}")
             }
         }
     }
