@@ -1,6 +1,5 @@
 package com.company.test;
 
-import android.util.Log;
 
 import java.io.IOException;
 import java.net.*;
