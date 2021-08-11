@@ -18,7 +18,7 @@ jobs:
       - name: compiling classes 
         run: javac -d out/production src/Main.java src/PingCheckServer.java
       - name: building jar
-        run: jar cmf META-INF/MANIFEST.MF out/artifacts/pingServer.jar src/Main.java src/PingCheckServer.java
+        run: jar cmf META-INF/MANIFEST.MF out/artifacts/pingServer.jar  -C out/production Main.class -C out/production PingCheckServer.class
       - name: Upload jar to artifacts
         uses: actions/upload-artifact@v2
         with:
