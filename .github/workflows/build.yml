@@ -29,12 +29,9 @@ jobs:
       - name: Set artifactName variable
         uses: deep-mm/set-variables@v1.0
         with:
-          variableFileName: 'variables'
-          
+          variableFileName: 'variables'   
       - name: building jar
         run: jar cmf META-INF/MANIFEST.MF "out/artifacts/${{ env.artifactName }}.jar"  -C out/production Main.class -C out/production PingCheckServer.class 
-            && cd out/artifacts/ && dir && cd .. && cd ..
-    
       - name: Upload jar to artifacts
         uses: actions/upload-artifact@v2
         with:
