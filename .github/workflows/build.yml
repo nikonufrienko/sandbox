@@ -17,8 +17,6 @@ jobs:
         run: mkdir -p out/production && mkdir -p out/artifacts
       - name: compiling classes 
         run: javac -d out/production src/Main.java src/PingCheckServer.java
-      - name: building jar
-        run: jar cmf META-INF/MANIFEST.MF out/artifacts/pingServer.jar  -C out/production Main.class -C out/production PingCheckServer.class
       - name: Upload jar to artifacts
         uses: actions/upload-artifact@v2
       - name: Create file with artifactName variable
@@ -32,6 +30,9 @@ jobs:
         uses: deep-mm/set-variables@v1.0
         with:
           variableFileName: 'variables'
+          
+      - name: building jar
+        run: jar cmf META-INF/MANIFEST.MF "out/artifacts/${{ env.artifactName }}.jar"  -C out/production Main.class -C out/production PingCheckServer.class
         
       - name: Upload jar to artifacts
         uses: actions/upload-artifact@v2
