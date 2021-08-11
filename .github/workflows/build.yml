@@ -21,6 +21,20 @@ jobs:
         run: jar cmf META-INF/MANIFEST.MF out/artifacts/pingServer.jar  -C out/production Main.class -C out/production PingCheckServer.class
       - name: Upload jar to artifacts
         uses: actions/upload-artifact@v2
+      - name: Create file with artifactName variable
+        run: |
+          REF=$(echo "-${GITHUB_REF#refs/heads/}" | sed 's/\//-/g')
+          if [ ${#REF} -eq 1 ]; then REF=""; fi
+          ARTIFACT_NAME="speedtest-$(cat VERSION)-$GITHUB_RUN_NUMBER$REF"
+          mkdir -p .github/variables
+          echo "{\"variables\": [{\"name\": \"artifactName\", \"value\": \"$ARTIFACT_NAME\" }]}" > .github/variables/variables.json
+      - name: Set artifactName variable
+        uses: deep-mm/set-variables@v1.0
         with:
-          name: pingServer.jar
+          variableFileName: 'variables'
+        
+      - name: Upload jar to artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.artifactName }}
           path: out/artifacts/*
