@@ -33,5 +33,5 @@ jobs:
       - name: Upload jar to artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.artifactName }}.jar
+          name: ${{ env.artifactName }}
           path: out/artifacts/*
